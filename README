@@ -1,0 +1,5 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1579
+
+Use the keys: "Return, Backspace, Delete, Space, Tab" in Normal-Mode like you are used from Insert-Mode.
+Very usefull to do some code cleanup in Normal-Mode, or to make some place for copy/paste action. Or just to delete a line fast and easy.
+(or insert a new line.....). 
