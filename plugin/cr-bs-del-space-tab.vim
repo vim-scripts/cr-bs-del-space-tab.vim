@@ -1,3 +1,30 @@
+" Name:
+"
+"    cr-bs-del-space-tab.vim
+"
+"
+" Copyright:
+" 
+"    Jochen Baier, 2006 (email@Jochen-Baier.de)
+"
+" Version: 0.02
+"
+" Last Modified: Jun 28, 2006
+"
+" Use CR-TAB-DEL-SPACE-TAB in Normal Mode like in Insert Mode"
+"
+" Use the keys: "Return, Backspace, Delete, Space, Tab" in Normal-Mode
+" like you are used from Insert-Mode. Very usefull to do some code cleanup in Normal-Mode,
+" or to make some place for copy/paste action. Or just to delete a line fast and easy.
+" (or insert a new line.....).
+"
+"
+" Installation: 
+"
+" * Drop cr-bs-del-space-tab.vim into your plugin directory           
+"
+
+
 function! Delete_key(...)
 
   let line=getline (".")
@@ -75,9 +102,24 @@ function! TAB_key (...)
 endfunction
 
 
+function! Return_key ()
+
+  let buftype = getbufvar(bufnr(''), '&buftype') 
+  
+  if buftype != ""
+    unmap <CR>
+    execute "normal \<CR>"
+    nnoremap <silent> <CR> :call Return_key()<CR>
+  else
+    execute "normal i\<CR>\<ESC>" 
+  endif
+
+endfunction           
+
+
 
 nnoremap <silent> <DEL> :call Delete_key()<CR>
-nnoremap <silent> <CR> i<CR><ESC>
+nnoremap <silent> <CR> :call Return_key()<CR>
 nnoremap <silent> <SPACE> i<SPACE><ESC>l
 nnoremap <silent> <TAB> :call TAB_key()<CR>
 nnoremap <silent> <BS> :call BS_key()<CR>
